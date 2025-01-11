@@ -1,18 +1,27 @@
 import colors from "@/constants/colors";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
-import { Link } from "expo-router";
+import {Ionicons} from '@expo/vector-icons';
+import {router} from 'expo-router'
 
-export default function Login() {
+export default function Signup() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <Pressable style={styles.backButton} onPress={() => router.back()}>
+            <Ionicons name="arrow-back" size={24} color={colors.white}/>
+        </Pressable>
         <Text style={styles.logoText}>
           Dev<Text style={{ color: colors.green }}>App</Text>
         </Text>
-        <Text style={styles.slogan}>O novo futuro da programação!</Text>
+        <Text style={styles.slogan}>Cadastre-se</Text>
       </View>
 
       <View style={styles.form}>
+        <View>
+          <Text style={styles.label}>Nome Completo</Text>
+          <TextInput placeholder="Nome completo" style={styles.input} />
+        </View>
+
         <View>
           <Text style={styles.label}>Email</Text>
           <TextInput placeholder="Digite seu email" style={styles.input} />
@@ -22,12 +31,9 @@ export default function Login() {
           <TextInput placeholder="Digite sua senha" style={styles.input} secureTextEntry/>
         </View>
         <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Acessar</Text>
+            <Text style={styles.buttonText}>Cadastrar</Text>
         </Pressable>
 
-        <Link href='/(auth)/signup/page' style={styles.link}>
-         <Text>Não possui uma conta? Clique aqui!</Text>
-        </Link>
       </View>
     </View>
   );
@@ -90,8 +96,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold'
   },
-  link:{
-    marginTop: 16,
-    textAlign: 'center'
+  backButton:{
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    alignSelf: "flex-start",
+    padding: 8,
+    borderRadius:8,
+    marginBottom: 8
   }
 });
